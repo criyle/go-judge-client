@@ -4,6 +4,7 @@ import (
 	"sync"
 
 	"github.com/criyle/go-judge-client/language"
+	"github.com/criyle/go-judge/pkg/envexec"
 	"github.com/criyle/go-judge/pkg/pool"
 )
 
@@ -13,25 +14,19 @@ type Runner struct {
 	Queue Receiver
 
 	// Builder builds the sandbox runner
-	Builder pool.EnvironmentBuilder
-
-	// Builder for cgroups
-	CgroupBuilder pool.CgroupBuilder
+	Builder pool.EnvBuilder
 
 	Language language.Language
 
-	// pool of sandbox to use
-	pool *pool.EnvPool
-
-	cgPool *pool.FakeCgroupPool
+	// pool of environment to use
+	pool envexec.EnvironmentPool
 
 	// ensure init / shutdown only once
 	onceInit, onceShutdown sync.Once
 }
 
 func (r *Runner) init() {
-	r.pool = pool.NewEnvPool(r.Builder)
-	r.cgPool = pool.NewFakeCgroupPool(r.CgroupBuilder)
+	r.pool = pool.NewPool(r.Builder)
 }
 
 // Loop status a runner in a forever loop, waiting for task and execute
@@ -58,7 +53,5 @@ loop:
 		}
 	}
 	r.onceShutdown.Do(func() {
-		r.cgPool.Shutdown()
-		r.pool.Shutdown()
 	})
 }

@@ -64,7 +64,6 @@ func (r *Runner) exec(done <-chan struct{}, task *ExecTask) *RunTaskResult {
 
 	// run
 	rn := &envexec.Single{
-		CgroupPool:      r.cgPool,
 		EnvironmentPool: r.pool,
 		Cmd:             c,
 	}

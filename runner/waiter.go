@@ -14,7 +14,7 @@ type waiter struct {
 	timeLimit time.Duration
 }
 
-func (w *waiter) Wait(ctx context.Context, usg envexec.CPUUsager) bool {
+func (w *waiter) Wait(ctx context.Context, usg envexec.Process) bool {
 	var lastCPUUsage time.Duration
 	var totalTime time.Duration
 
@@ -26,10 +26,8 @@ func (w *waiter) Wait(ctx context.Context, usg envexec.CPUUsager) bool {
 	for {
 		select {
 		case now := <-ticker.C: // interval
-			cpuUsage, err := usg.CPUUsage()
-			if err != nil {
-				return true
-			}
+			usage := usg.Usage()
+			cpuUsage := usage.Time
 
 			cpuUsageDelta := cpuUsage - lastCPUUsage
 			timeDelta := now.Sub(lastCheckTime)

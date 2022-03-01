@@ -3,8 +3,7 @@ package runner
 import (
 	"time"
 
-	"github.com/criyle/go-judge/file"
-	"github.com/criyle/go-judge/pkg/envexec"
+	"github.com/criyle/go-judge/envexec"
 	"github.com/criyle/go-sandbox/runner"
 )
 
@@ -31,8 +30,8 @@ type RunTaskResult struct {
 
 // CompileResult returns result for compile tasks
 type CompileResult struct {
-	Exec  *file.CompiledExec // contains exec if success
-	Error string             // error message if failed
+	// Exec  *file.CompiledExec // contains exec if success
+	Error string // error message if failed
 }
 
 // ExecResult returns result for exec tasks

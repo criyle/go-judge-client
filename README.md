@@ -2,31 +2,32 @@
 
 Under designing & development
 
-The goal to to reimplement [syzoj/judge-v3](https://github.com/syzoj/judge-v3) in GO language using [go-sandbox](https://github.com/criyle/go-sandbox) and [go-judge](https://github.com/criyle/go-judge)
+The goal to to re-implement [syzoj/judge-v3](https://github.com/syzoj/judge-v3) in GO language using [go-judge](https://github.com/criyle/go-judge)'s executor server
 
 ## Workflow
 
 ``` text
     ^
-    | Client (talk to the website)
+    | Client (talk to the OJ website)
     v
-+------+    +----+
-|      |<-->|Data|
-|Judger|    +----+--+
-|      |<-->|Problem|
-+------+    +-------+
-    ^
-    | TaskQueue
++--------+    +------+
+|        |<-->| Data |
+| Judger |    +------+--+
+|        |<-->| Problem |
++--------+    +---------+
+    | Task
     v
-+------+   +--------+
-|Runner|<->|Language|
-+------+   +--------+
++--------+   +----------+
+|        |<->| Language |
+| Runner |   +----------+
+|        |<->| Diff     |
++--------+   +----------+
     ^
     | EnvExec
     v
-+--------------------+
-|ContainerEnvironment|
-+--------------------+
++-----------------+
+| Executor Server |
++-----------------+
 ```
 
 ## Interfaces
@@ -53,16 +54,29 @@ The goal to to reimplement [syzoj/judge-v3](https://github.com/syzoj/judge-v3) i
 
 ## Planned API
 
-### Progress
+### Client Status
+
+Up <-> Down
+
+### Task Progress
 
 Client is able to report progress to the web front-end. Task should maintain its states
 
 Planned events are:
 
+(Preparing) -> Parsed -> (Compiling) -> Compiled ->
+loop each sub task
+    (Judging)
+    Progressed
+end
+Finished
+
 - Parsed: problem data have been downloaded and problem configuration have been parsed (pass problem config to task)
 - Compiled: user code have been compiled (success / fail)
 - Progressed: single test case finished (success / fail - detail message)
 - Finished: all test cases finished / compile failed
+
+Context are defined by the client to handle cancellation. Subsequent task will be cancelled and the correspond event may not be trigger.
 
 ## TODO
 
@@ -76,3 +90,4 @@ Planned events are:
 - [ ] interact problem
 - [ ] answer submit
 - [ ] demo site
+- [ ] uoj support

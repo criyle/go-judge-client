@@ -6,7 +6,7 @@ import (
 
 	"github.com/criyle/go-judge-client/client"
 	"github.com/criyle/go-judge-client/problem"
-	"github.com/criyle/go-judge/pkg/envexec"
+	"github.com/criyle/go-judge/envexec"
 	"github.com/ugorji/go/codec"
 )
 

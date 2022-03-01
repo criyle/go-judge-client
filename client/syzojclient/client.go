@@ -7,13 +7,12 @@ import (
 
 	"github.com/criyle/go-judge-client/client"
 	"github.com/criyle/go-judge-client/problem"
-	"github.com/criyle/go-judge/file"
 	"github.com/criyle/go-sandbox/runner"
 
-	engineio "github.com/googollee/go-engine.io"
-	"github.com/googollee/go-engine.io/transport"
-	"github.com/googollee/go-engine.io/transport/polling"
-	"github.com/googollee/go-engine.io/transport/websocket"
+	"github.com/googollee/go-socket.io/engineio"
+	"github.com/googollee/go-socket.io/engineio/transport"
+	"github.com/googollee/go-socket.io/engineio/transport/polling"
+	"github.com/googollee/go-socket.io/engineio/transport/websocket"
 	"github.com/googollee/go-socket.io/parser"
 	"github.com/ugorji/go/codec"
 )
@@ -237,10 +236,10 @@ type judgeParameter struct {
 func newTask(c *Client, msg *judgeTask, ackID uint64) client.Task {
 	task := &client.JudgeTask{
 		Type: problem.Standard,
-		Code: file.SourceCode{
-			Language: msg.Content.Param.Language,
-			Code:     file.NewMemFile("src", []byte(msg.Content.Param.Code)),
-		},
+		// Code: file.SourceCode{
+		// 	Language: msg.Content.Param.Language,
+		// 	Code:     file.NewMemFile("src", []byte(msg.Content.Param.Code)),
+		// },
 		TimeLimit:   time.Duration(msg.Content.Param.TimeLimit) * time.Millisecond,
 		MemoryLimit: runner.Size(msg.Content.Param.MemoryLimit << 20),
 	}

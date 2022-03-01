@@ -2,7 +2,6 @@ package judger
 
 import (
 	"github.com/criyle/go-judge-client/client"
-	"github.com/criyle/go-judge-client/problem"
 	"github.com/criyle/go-judge-client/runner"
 )
 
@@ -10,5 +9,5 @@ import (
 type Judger struct {
 	client.Client
 	runner.Sender
-	problem.Builder
+	// problem.Builder
 }

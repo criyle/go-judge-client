@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/criyle/go-judge/pkg/envexec"
+	"github.com/criyle/go-judge/envexec"
 )
 
 const minCPUPercent = 40 // 40%

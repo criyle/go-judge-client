@@ -2,55 +2,38 @@
 
 Under designing & development
 
-The goal to to re-implement [syzoj/judge-v3](https://github.com/syzoj/judge-v3) in GO language using [go-judge](https://github.com/criyle/go-judge)'s executor server
+[![GoDoc](https://godoc.org/github.com/criyle/go-judge-client?status.svg)](https://godoc.org/github.com/criyle/go-judge-client) [![Go Report Card](https://goreportcard.com/badge/github.com/criyle/go-judge-client)](https://goreportcard.com/report/github.com/criyle/go-judge-client) [![Release](https://img.shields.io/github/v/tag/criyle/go-judge-client)](https://github.com/criyle/go-judge-client/releases/latest)
+
+The goal to to reimplement [syzoj/judge-v3](https://github.com/syzoj/judge-v3) in GO language using [go-sandbox](https://github.com/criyle/go-sandbox) and [go-judge](https://github.com/criyle/go-judge)
 
 ## Workflow
 
 ``` text
-    ^
-    | Client (talk to the OJ website)
-    v
-+--------+    +------+
-|        |<-->| Data |
-| Judger |    +------+--+
-|        |<-->| Problem |
-+--------+    +---------+
-    | Task
-    v
-+--------+   +----------+
-|        |<->| Language |
-| Runner |   +----------+
-|        |<->| Diff     |
-+--------+   +----------+
-    ^
-    | EnvExec
-    v
-+-----------------+
-| Executor Server |
-+-----------------+
++-----------------------------------------------+     +--------+
+| Judger (judger logic)                         | <-> | Client |
++--------------------------+-------------+------+     +--------+
+| Language (Compile + Run) | ProgramConf | Data |
++--------------------------+-------------+------+
+| Executor Server (RPC)    |
++--------------------------+
 ```
 
 ## Interfaces
 
-- client: receive judge tasks (websocket / socket.io / RabbitMQ / REST API)
+- client: receive judge tasks (websocket / socket.io / RabbitMQ / REST API / gRPC stream)
 - data: interface to download, cache, lock and access test data files from website (by dataId)
-- taskqueue: message queue to send run task and receive run task result (In memory / (RabbitMQ, Redis))
-- file: general file interface (disk / memory)
-- language: programming language compile & execute configurations
+- language: programming language compile & execute configurations for Executor Server
 - problem: parse problem definition from configuration files
 
-## Judge Logic
+## Logic
 
-- judger: execute judge logics (compile / standard / interactive / answer submit) and distribute as run task to queue, the collect and calculate results
-- runner: receive run task and execute in sandbox environment
+- judger: execute judge logics (compile / standard / interactive / answer submit) then collect and calculate results
 
 ## Models
 
 - JudgeTask: judge task pushed from website (type, source, data)
 - JudgeResult: judge task result send back to website
 - JudgeSetting: problem setting (from yaml) and JudgeCase
-- RunTask: run task parameters send to run_queue
-- RunResult: run task result sent back from queue
 
 ## Planned API
 
@@ -82,6 +65,8 @@ Context are defined by the client to handle cancellation. Subsequent task will b
 
 - [x] socket.io client with namespace
 - [x] judge_v3 protocol
+- [ ] executor server integration
+- [ ] refactor
 - [ ] syzoj problem YAML config parser
 - [ ] syzoj data downloader
 - [ ] syzoj compile configuration

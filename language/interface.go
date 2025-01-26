@@ -3,7 +3,7 @@ package language
 import (
 	"time"
 
-	"github.com/criyle/go-sandbox/runner"
+	"github.com/criyle/go-judge/envexec"
 )
 
 // Type defines compile / exec
@@ -31,7 +31,7 @@ type ExecParam struct {
 
 	// limits
 	TimeLimit   time.Duration
-	MemoryLimit runner.Size
+	MemoryLimit envexec.Size
 	ProcLimit   uint64
-	OutputLimit runner.Size
+	OutputLimit envexec.Size
 }

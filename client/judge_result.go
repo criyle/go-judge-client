@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/criyle/go-judge/envexec"
-	"github.com/criyle/go-sandbox/runner"
 )
 
 // ProgressStatus defines progress status
@@ -59,7 +58,7 @@ type TestCaseResult struct {
 
 	// detail stats
 	Time   time.Duration
-	Memory runner.Size
+	Memory envexec.Size
 
 	// detail outputs
 	Input  []byte

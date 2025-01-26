@@ -7,7 +7,7 @@ import (
 
 	"github.com/criyle/go-judge-client/client"
 	"github.com/criyle/go-judge-client/problem"
-	"github.com/criyle/go-sandbox/runner"
+	"github.com/criyle/go-judge/envexec"
 
 	"github.com/googollee/go-socket.io/engineio"
 	"github.com/googollee/go-socket.io/engineio/transport"
@@ -241,7 +241,7 @@ func newTask(c *Client, msg *judgeTask, ackID uint64) client.Task {
 		// 	Code:     file.NewMemFile("src", []byte(msg.Content.Param.Code)),
 		// },
 		TimeLimit:   time.Duration(msg.Content.Param.TimeLimit) * time.Millisecond,
-		MemoryLimit: runner.Size(msg.Content.Param.MemoryLimit << 20),
+		MemoryLimit: envexec.Size(msg.Content.Param.MemoryLimit << 20),
 	}
 
 	t := &Task{

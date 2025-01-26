@@ -4,7 +4,6 @@ import (
 	"time"
 
 	"github.com/criyle/go-judge/envexec"
-	"github.com/criyle/go-sandbox/runner"
 )
 
 // RunTaskStatus defines success / fail
@@ -47,7 +46,7 @@ type ExecResult struct {
 
 	// detail stats
 	Time   time.Duration
-	Memory runner.Size
+	Memory envexec.Size
 
 	// user stdout stderr
 	UserOutput []byte

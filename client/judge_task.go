@@ -3,7 +3,7 @@ package client
 import (
 	"time"
 
-	"github.com/criyle/go-sandbox/runner"
+	"github.com/criyle/go-judge/envexec"
 )
 
 // JudgeTask contains task received from server
@@ -14,6 +14,6 @@ type JudgeTask struct {
 
 	// task parameters
 	TimeLimit   time.Duration
-	MemoryLimit runner.Size
+	MemoryLimit envexec.Size
 	Extra       map[string]interface{} // extra special parameters
 }

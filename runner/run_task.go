@@ -3,7 +3,7 @@ package runner
 import (
 	"time"
 
-	"github.com/criyle/go-sandbox/runner"
+	"github.com/criyle/go-judge/envexec"
 )
 
 // RunTask is used to send task into RunQueue,
@@ -29,7 +29,7 @@ type ExecTask struct {
 
 	// Run limits
 	TimeLimit   time.Duration
-	MemoryLimit runner.Size
+	MemoryLimit envexec.Size
 
 	// Input / Output
 	// InputFile  file.File

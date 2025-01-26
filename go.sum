@@ -1,9 +1,9 @@
 github.com/creack/pty v1.1.24 h1:bJrF4RRfyJnbTJqzRLHzcGaZK1NeM5kTC9jGgovnR1s=
 github.com/creack/pty v1.1.24/go.mod h1:08sCNb52WyoAwi2QDyzUCTgcvVFhUzewun7wtTfvcwE=
-github.com/criyle/go-judge v1.8.5 h1:4G1kMvIdYQ5S9EajcrYNyCYovE80Rgkt8Pg0dCxb2EM=
-github.com/criyle/go-judge v1.8.5/go.mod h1:+0lDizAqZugQ4NQvpYmR5ujpVaRUqEl/9ZiZ84nrOIU=
-github.com/criyle/go-sandbox v0.10.5 h1:VIlsXjh7cB+q6Sgm45+YpzQGk7vHQfRicnRzcuJ+6Ko=
-github.com/criyle/go-sandbox v0.10.5/go.mod h1:sYJUuTmJ72Jilkc1/PO7eDdpJq3rOZ55o8MxzP80vw0=
+github.com/criyle/go-judge v1.8.6 h1:Dww27ze04BmnUomO6NIjKAbYKxZboeyvnm+iySUxel8=
+github.com/criyle/go-judge v1.8.6/go.mod h1:nH3cCXThwVGtPGJJtakR6zhmNYKiTrYALnQd4WEW32E=
+github.com/criyle/go-sandbox v0.10.6 h1:vyp+r7V2Vl5xY4Pt/2kYvRF5wu1NhMwLgmPKD0lXZ/o=
+github.com/criyle/go-sandbox v0.10.6/go.mod h1:nZLj0b/45fZ/a+xWmWrPrcKSepnXu0iPAVF3xF54UEI=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
